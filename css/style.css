@@ -866,10 +866,9 @@ a.home-dog-tie:hover {
         height: auto
     }
     .code-wrapper span {
-        word-break: break-all;
         height: auto;
         line-height: 1.8;
-        max-width: 90%;
+        max-width: 100%
     }
     .code-wrapper .button {
         width: 100%;
