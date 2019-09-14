@@ -19,7 +19,6 @@ integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQV
         <a href="index.html"><i class="fa fa-navicon"></i></a>
     </div>
     <div class="vertical-nav">
-        <h1>Roadside America API</h1>
         <ul>
             <li><a href="https://www.loc.gov/free-to-use/john-margolies-roadside-america-photograph-archive" target="_blank"><i class="fa fa-book"></i>  &nbsp;Library Of Congress Gallery</a></li>
             <li><a href="https://www.flickr.com/photos/library_of_congress/albums/72157686396348231" target="_blank"><i class="fa fa-flickr"></i>  &nbsp;Flickr Gallery</a></li>
@@ -27,7 +26,7 @@ integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQV
         </ul>
         <span class="logo"></span>
     </div>
-    <div class="api-side home">
+    <div id ="main-content" class="api-side home">
         <h1 class="mobile-h1">Roadside America API</h1>
         <h2 class="title">Free to Use and Reuse: John Margolies Roadside America Photograph Archive</h2>
         <p>Take a journey along U.S. main streets, byways, and highways through photographs taken by John Margolies between 1969 and 2008. We’ll be continuously adding images from the Margolies archive of more than 11,000 color slides.</p>
@@ -60,7 +59,6 @@ integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQV
     </script>
     <script src="https://dog.ceo/js/main.js"></script>
     <script>
-
         function getImage() {
             $.getJSON("api/index.php", function (data) {
                 $(".json pre").html(JSON.stringify(data, null, 4));
@@ -78,6 +76,19 @@ integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQV
                 $(".json pre").html(JSON.stringify(data, null, 4));
                 $(".logo").html("<img src='" + data.results.images.full + "' style='max-width: 100%; margin-top: 1.5em;'>");
             });
+        });
+
+        function mobileMenu() {
+            var x = document.getElementById("main-content");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        $('.mobile-menu').click(function () {
+            mobileMenu();
         });
 
     </script>
