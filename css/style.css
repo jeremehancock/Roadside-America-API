@@ -484,8 +484,6 @@ a.home-dog-tie:hover {
     width: 75%;
     position: absolute;
     height: 100%;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
     right: 0;
     padding-left: 4rem;
     padding-right: 2rem;
