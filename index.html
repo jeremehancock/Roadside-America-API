@@ -1,4 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -20,41 +21,36 @@ integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQV
     <div class="vertical-nav">
         <h1>Roadside America API</h1>
         <ul>
-            <li><a href="#">Library Of Congress Gallery</a></li>
-            <li><a href="">Flickr Gallery</a></li>
-            <li><a href="https://github.com/ElliottLandsborough/dog-ceo-api" target="" _blank><i class="fa fa-github"></i> View on GitHub</a></li>
+            <li><a href="https://www.loc.gov/free-to-use/john-margolies-roadside-america-photograph-archive" target="_blank"><i class="fa fa-book"></i>  &nbsp;Library Of Congress Gallery</a></li>
+            <li><a href="https://www.flickr.com/photos/library_of_congress/albums/72157686396348231" target="_blank"><i class="fa fa-flickr"></i>  &nbsp;Flickr Gallery</a></li>
+            <li><a href="https://github.com/mhancoc7/Roadside-America-API" target="_blank"><i class="fa fa-github"></i>  &nbsp;View on GitHub</a></li>
         </ul>
         <span class="logo"></span>
     </div>
     <div class="api-side home">
-        <h1 class="title">Free to Use and Reuse: John Margolies Roadside America Photograph Archive</h1>
+        <h1 class="mobile-h1">Roadside America API</h1>
+        <h2 class="title">Free to Use and Reuse: John Margolies Roadside America Photograph Archive</h2>
         <p>Take a journey along U.S. main streets, byways, and highways through photographs taken by John Margolies between 1969 and 2008. We’ll be continuously adding images from the Margolies archive of more than 11,000 color slides.</p>
        
         <div class="code-wrapper">
             <span class="code">https://roadside-america.dumbprojects.com/api</span>
-            <a href='javascript:void(0);' class='get-dog button'>Submit</a>
+            <a href='javascript:void(0);' class='get-image button'>Submit</a>
         </div>
         <div class="try">
             <div class="json">
                 <h4>JSON</h4>
                 <pre></pre>
             </div>
+
+            <div class="image">
+                <h4>Image</h4>
+                <div class="image-content">
+                </div>
+            </div>
         </div>
 
-
     </div>
-    <script>
-        (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-98107378-1', 'auto');
-        ga('send', 'pageview');
-
-    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
@@ -65,19 +61,23 @@ integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQV
     <script src="https://dog.ceo/js/main.js"></script>
     <script>
 
-        function getLogo() {
+        function getImage() {
+            $.getJSON("api/index.php", function (data) {
+                $(".json pre").html(JSON.stringify(data, null, 4));
+                $(".image-content").html("<img src='" + data.results.images.full + "'>");
+            });
+        }
+
+        $('.get-image').click(function () {
+            getImage();
+        });
+
+        $(document).ready(function () {
+            getImage();
             $.getJSON("api/index.php", function (data) {
                 $(".json pre").html(JSON.stringify(data, null, 4));
                 $(".logo").html("<img src='" + data.results.images.full + "' style='max-width: 100%; margin-top: 1.5em;'>");
             });
-        }
-
-        $('.get-dog').click(function () {
-            getLogo();
-        });
-
-        $(document).ready(function () {
-            getLogo();
         });
 
     </script>

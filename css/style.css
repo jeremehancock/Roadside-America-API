@@ -420,8 +420,6 @@ a.home-dog-tie:hover {
 
 .vertical-nav {
     height: 100vh;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
     background-color: #eee;
     position: absolute;
     left: 0;
@@ -495,7 +493,7 @@ a.home-dog-tie:hover {
 
 .api-side h1 {
     margin: 2rem 0;
-    padding-top: 4rem;
+    padding-top: 2rem;
     line-height: 1.8
 }
 
@@ -589,6 +587,14 @@ a.home-dog-tie:hover {
     left: 0;
     top: 0;
     z-index: 2
+}
+
+.mobile-h1 {
+    display: none;
+}
+
+.title {
+    margin-top: 3em;
 }
 
 .mobile-menu i {
@@ -703,8 +709,17 @@ a.home-dog-tie:hover {
 
 @media(max-width:1024px) {
     .mobile-menu {
-        display: block
+        display: block;
     }
+
+    .mobile-h1 {
+        display: block;
+    }
+
+    .title {
+        margin-top: -20px;
+    }
+
     .vertical-nav {
         width: 100%;
         height: 100vh;
@@ -869,7 +884,7 @@ a.home-dog-tie:hover {
 }
 
 .home .code-wrapper {
-    margin-top: 6rem
+    margin-top: 2rem
 }
 
 @media(max-width:767px) {
@@ -897,7 +912,6 @@ a.home-dog-tie:hover {
 
 .try .image {
     padding-left: 2rem;
-    text-align: center
 }
 
 .try .image img {
