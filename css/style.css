@@ -894,9 +894,10 @@ a.home-dog-tie:hover {
 .try {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap;
     background-color: #fff;
-    margin-top: 2rem
+    margin-top: 2rem;
+    justify-content: space-around;
 }
 
 .try .json,
