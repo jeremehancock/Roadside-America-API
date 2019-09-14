@@ -3,15 +3,14 @@ html {
     font-family: karla, monospace;
     line-height: 1.8;
     color: #333;
-    font-size: 18px;
-    background: #eeeeee;
-
+    font-size: 18px
 }
 
 a {
     transition: all 300ms ease-out;
     text-decoration: none;
     color: #333;
+    border-bottom: 2px solid #1a91db
 }
 
 a:hover {
@@ -436,7 +435,7 @@ a.home-dog-tie:hover {
 .vertical-nav .logo {
     max-width: 120px;
     height: auto;
-    margin-bottom: .5rem
+    margin-bottom: .5rem;
 }
 
 .vertical-nav h1 {
@@ -483,18 +482,20 @@ a.home-dog-tie:hover {
 }
 
 .api-side {
-    width: 85%;
-    margin: auto;
+    width: 75%;
+    position: absolute;
+    height: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    right: 0;
     padding-left: 4rem;
-    padding-right: 4rem;
-    padding-bottom: 30px;
-    padding-top: 1px;
-    margin-top: 2rem;
-    background: #eeeeee;
-    border-radius: 10px;
+    padding-right: 2rem;
+    padding-bottom: 4rem
 }
 
 .api-side h1 {
+    margin: 2rem 0;
+    padding-top: 4rem;
     line-height: 1.8
 }
 
@@ -727,10 +728,8 @@ a.home-dog-tie:hover {
         word-break: break-all
     }
     .api-side {
-        width: 95%;
-        margin: auto;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        width: 100%;
+        padding: 0 1rem 2rem
     }
     .breed-image {
         width: 100%;
@@ -831,8 +830,7 @@ a.home-dog-tie:hover {
     font-family: ubuntu mono, monospace;
     padding: .5rem 1rem;
     display: inline-block;
-    height: 40px;
-    background: #ffffff;
+    height: 40px
 }
 
 .code-wrapper .button {
@@ -871,12 +869,12 @@ a.home-dog-tie:hover {
 }
 
 .home .code-wrapper {
-    margin-top: 3rem
+    margin-top: 6rem
 }
 
 @media(max-width:767px) {
     .home .code-wrapper {
-        margin-top: 2rem
+        margin-top: 3rem
     }
 }
 
@@ -884,7 +882,7 @@ a.home-dog-tie:hover {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background: #eeeeee;
+    background-color: #fff;
     margin-top: 2rem
 }
 
@@ -899,17 +897,18 @@ a.home-dog-tie:hover {
 
 .try .image {
     padding-left: 2rem;
+    text-align: center
 }
 
 .try .image img {
-    max-width: 540px;
+    max-width: 100%;
     height: auto;
-    max-height: 350px;
+    max-height: 300px;
     margin-bottom: 1rem
 }
 
 .try pre {
-    word-break: break-all;
+    word-break: break-all
 }
 
 @media(max-width:767px) {
