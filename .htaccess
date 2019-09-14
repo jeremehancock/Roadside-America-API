@@ -1,0 +1,9 @@
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ==================================================================
+# Prevent .git access
+# ==================================================================
+
+RedirectMatch 404 /\.git
