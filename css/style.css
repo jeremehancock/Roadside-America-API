@@ -839,7 +839,7 @@ a.home-dog-tie:hover {
     border-bottom-right-radius: 3px
 }
 
-.code-wrapper div {
+.code-wrapper span {
     font-family: ubuntu mono, monospace;
     padding: .5rem 1rem;
     display: inline-block;
@@ -865,10 +865,11 @@ a.home-dog-tie:hover {
     .code-wrapper {
         height: auto
     }
-    .code-wrapper div {
+    .code-wrapper span {
         height: auto;
         line-height: 1.8;
-        max-width: 100%
+        max-width: 100%;
+        font-size: 9em;
     }
     .code-wrapper .button {
         width: 100%;
