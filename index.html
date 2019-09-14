@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Roadside America API</title>
-    <meta name="twitter:image" content="https://dog.ceo/img/dog-api-fb.jpg">
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Ubuntu+Mono:400" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -27,6 +26,9 @@ integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQV
             <li><a href="https://github.com/mhancoc7/Roadside-America-API" target="_blank"><i class="fa fa-github"></i>  &nbsp;View on GitHub</a></li>
         </ul>
         <span class="logo"></span>
+        <ul>
+            <li>Powered By: <a href="https://www.loc.gov/free-to-use/" target="_blank"><img src="images/logo-loc-new-branding.svg" /></a></li>
+        </ul>
     </div>
     <div id ="main-content" class="api-side home">
         <h1 class="mobile-h1">Roadside America API</h1>
@@ -59,7 +61,6 @@ integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQV
             document.write(unescape("%3Cscript src='/js/vendor/jquery-3.4.1.min.js' type='text/javascript'%3E%3C/script%3E"));
         }
     </script>
-    <script src="https://dog.ceo/js/main.js"></script>
     <script>
         function getImage() {
             $.getJSON("api/index.php", function (data) {
@@ -94,6 +95,8 @@ integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQV
         $('.mobile-menu').click(function () {
             mobileMenu();
         });
+
+        $(".mobile-menu").click(function(e){e.preventDefault();$(".vertical-nav").toggleClass("active");});$(".vertical-nav ul a").click(function(e){$(".vertical-nav").removeClass("active");});
 
     </script>
 </body>
