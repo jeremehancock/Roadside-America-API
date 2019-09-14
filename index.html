@@ -74,7 +74,7 @@ integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQV
             getImage();
             $.getJSON("api/index.php", function (data) {
                 $(".json pre").html(JSON.stringify(data, null, 4));
-                $(".logo").html("<img src='" + data.results.images.full + "' style='max-width: 100%; margin-top: 1.5em;'>");
+                $(".logo").html("<img src='" + data.results.images.full + "' style='max-width: 100%; margin-bottom: 1.5em;'>");
             });
         });
 
