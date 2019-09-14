@@ -936,10 +936,15 @@ a.home-dog-tie:hover {
     .try {
         flex-direction: column
     }
-    .try .json,
+
     .try .image {
         width: 100%;
         padding: 0
+    }
+
+    .try .json {
+        max-width: 100%;
+        padding: 0;
     }
 }
 
