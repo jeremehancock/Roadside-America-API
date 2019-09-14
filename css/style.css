@@ -74,6 +74,10 @@ body,html {
     color: #fff;
     background-color: #1782c4;
   }
+
+  .powered-by {
+      width: 100%;
+  }
   
   @media (max-width:540px) {
     a.home-button {
