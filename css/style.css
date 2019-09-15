@@ -344,6 +344,10 @@ body,html {
   .try .image {
     width: max-content;
   }
+
+  .image-content {
+    text-align: center;
+  }
   
   .try .json {
     padding-right: 2rem;
