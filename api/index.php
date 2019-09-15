@@ -38,19 +38,3 @@ $json = json_encode(array(
 echo $json;
 
 ?>
-
-<!-- Default Statcounter code for Roadside America (API) https://roadside-america.dumbprojects.com/apicts.com/ -->
-<script>
-    var sc_project=12101529; 
-    var sc_invisible=1; 
-    var sc_security="de62c209"; 
-</script>
-<script src="https://www.statcounter.com/counter/counter.js"async></script>
-<noscript>
-    <div class="statcounter">
-        <a title="Web Analytics Made Easy - StatCounter" href="https://statcounter.com/" target="_blank">
-        <img class="statcounter" src="https://c.statcounter.com/12101529/0/de62c209/1/" alt="Web Analytics Made Easy -StatCounter">
-    </a>
-</div>
-</noscript>
-<!-- End of Statcounter Code -->
