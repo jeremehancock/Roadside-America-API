@@ -191,7 +191,7 @@ body,html {
   }
   
   .api-side p {
-    margin: 1rem 0 0;
+    margin: 1rem 0 2em;
   }
   
   .mobile-menu {
@@ -274,13 +274,13 @@ body,html {
   .code-wrapper {
     background-color: #eee;
     line-height: 1;
-    display: inline-block;
+    display: contents;
     height: 40px;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
   
-  .code-wrapper span {
+  .code-wrapper pre {
     font-family: ubuntu mono, monospace;
     padding: .5rem 1rem;
     display: inline-block;
@@ -307,11 +307,12 @@ body,html {
       height: auto;
     }
   
-    .code-wrapper span {
+    .code-wrapper pre {
+      display: block;
       height: auto;
       line-height: 1.8;
       max-width: 100%;
-      font-size: .5em;
+      font-size: 1em;
     }
   
     .code-wrapper .button {
