@@ -1,0 +1,87 @@
+body, div, h1, h2, h3, h4, h5, h6, p, ul, ol, li, dl, dt, dd, img, form, fieldset, input, textarea, blockquote {
+	margin: 0; padding: 0; border: 0;
+}
+
+body {
+	background-color: #000;
+	background-image: url(../images/static.gif);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;;
+	font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 0.3em;
+	font-size: 62.5%;
+	overflow: hidden;
+}
+
+body, html, div {
+	height: 100%;
+	
+}
+
+#tv {
+	display: block;
+	background-image: url("../images/tv.png"), url("../images/overlay.png");
+	background-size: 100% 100%;
+}
+
+#mobile {
+	display: none;
+}
+
+@media (max-width:1024px) {
+	#tv {
+		display: none;
+	}
+
+	#mobile {
+		display: block;
+		background-image: url("../images/overlay.png");
+		background-size: 100% 100%;
+	}
+}	
+
+#content {
+	width: 50%; height: 65%; position: relative; top: 18%; left: 15%;
+	text-align: center; color: #000; 
+}
+
+#mobile-content {
+	width: 100%;
+	text-align: center; color: #000; 
+}
+
+
+p {
+	font-size: 1.7em; 
+}
+
+#title {
+	background: #eee;
+	padding: 15px;
+	border-radius: 10px;
+	opacity: 0.8;
+}
+
+#built-with {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	height: 15px;
+	background: #eee;
+	padding: 15px;
+	border-radius: 10px;
+}
+
+#mobile-title {
+	background: #fff;
+	padding: 15px;
+	border-radius: 0 0 20px 20px;
+	opacity: 0.5;
+}
+
+
+#social {
+    position: relative;
+    bottom: 40px;
+    left: 10px;
+  }
+
