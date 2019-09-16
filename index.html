@@ -113,9 +113,6 @@
 
         $(document).ready(function () {
             getImage();
-            $.getJSON("api/index.php", function (data) {
-                $(".json pre").html(JSON.stringify(data, null, 4));
-            });
         });
 
         function mobileMenu() {
