@@ -25,18 +25,6 @@ body, html, div {
 
 #mobile {
 	display: none;
-}
-
-@media (max-width:1024px) {
-	#tv {
-		display: none;
-	}
-
-	#mobile {
-		display: block;
-		background-image: url("../images/overlay.png");
-		background-size: 100% 100%;
-	}
 }	
 
 #content {
@@ -74,7 +62,7 @@ a:hover {
 	right: 10px;
 	bottom: 10px;
 	height: 15px;
-	background: #171711;
+	background: #171717;
 	color: #fff;
 	padding: 12px;
 	border-radius: 10px;
@@ -93,3 +81,33 @@ a:hover {
     left: 10px;
   }
 
+  @media (max-width:1024px) {
+	#tv {
+		display: none;
+	}
+
+	#mobile {
+		display: block;
+		background-image: url("../images/overlay.png");
+		background-size: 100% 100%;
+	}
+
+	#built-with {
+		position: absolute;
+		right: 10px;
+		bottom: 10px;
+		height: 15px;
+		background: #eee;
+		color: #171717;
+		padding: 12px;
+		border-radius: 10px;
+	}
+
+	a {
+		color: #171717; text-decoration: none;
+	   }
+	
+	a:hover {
+		color: #af9a77;
+	}
+}
