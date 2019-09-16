@@ -342,7 +342,7 @@ body,html {
   }
   
   .try .image {
-    width: max-content;
+    width: 45%;
   }
 
   .image-content {
@@ -351,7 +351,7 @@ body,html {
   
   .try .json {
     padding-right: 2rem;
-    max-width: 60%;
+    max-width: 50%;
   }
   
   .try .image {
