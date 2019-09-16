@@ -1,4 +1,4 @@
-# Roadside-America-API
+# Roadside America API
 
 <img src="https://roadside-america.dumbprojects.com/images/roadside-america.jpg"/>
 
