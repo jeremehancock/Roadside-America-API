@@ -54,6 +54,14 @@ p {
 	font-size: 1.7em; 
 }
 
+a {
+	color: #ded7bd; text-decoration: none;
+   }
+
+a:hover {
+	color: #af9a77;
+}
+
 #title {
 	background: #eee;
 	padding: 15px;
@@ -66,8 +74,9 @@ p {
 	right: 10px;
 	bottom: 10px;
 	height: 15px;
-	background: #eee;
-	padding: 15px;
+	background: #171711;
+	color: #fff;
+	padding: 12px;
 	border-radius: 10px;
 }
 
@@ -77,7 +86,6 @@ p {
 	border-radius: 0 0 20px 20px;
 	opacity: 0.5;
 }
-
 
 #social {
     position: relative;
