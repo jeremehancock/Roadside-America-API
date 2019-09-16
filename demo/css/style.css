@@ -64,7 +64,8 @@ a:hover {
 	height: 15px;
 	background: #171717;
 	color: #fff;
-	padding: 12px;
+	padding: 10px;
+	padding-top: 13px;
 	border-radius: 10px;
 }
 
