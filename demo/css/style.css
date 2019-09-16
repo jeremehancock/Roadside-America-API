@@ -99,8 +99,8 @@ a:hover {
 		height: 15px;
 		background: #eee;
 		color: #171717;
-		padding-top: 10px;
 		padding: 10px;
+		padding-top: 2px;
 		border-radius: 10px;
 	}
 
