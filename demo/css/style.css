@@ -14,7 +14,7 @@ body {
 
 body, html, div {
 	height: 100%;
-	
+	overflow: hidden;
 }
 
 #tv {
