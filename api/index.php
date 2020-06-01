@@ -5,32 +5,30 @@ header("Content-type:application/json");
 
 $random = rand(1,11704);
 
-$api_url = "https://www.loc.gov/pictures/search/?q=mrg&fa=displayed%3Aanywhere&c=1&sp=" . $random . "&fo=json";
+$number = sprintf("%05d", $random);
+
+$api_url = "https://loc.gov/pictures/resource/mrg." . $number . "?fo=json";
 
 $response = file_get_contents($api_url);
 $q_array = json_decode($response, true);
 
-$title =  $q_array["results"][0]["title"];
+$title =  $q_array["item"]["title"];
 
-$full = $q_array["results"][0]["image"]["full"];
-$square = $q_array["results"][0]["image"]["square"];
-$thumb = $q_array["results"][0]["image"]["thumb"];
+$large = $q_array["resource"]["large"];
+$medium = $q_array["resource"]["medium"];
+$small = $q_array["resource"]["small"];
 
-$item =  $q_array["results"][0]["links"]["item"];
-$resource = $q_array["results"][0]["links"]["resource"];
+$source =  $q_array["item"]["resource_links"][0];
 
 /* Set json array */
 $json = json_encode(array(
     "results" => array(
         "title" => $title,
-        "links" => array(
-            "item" => $item,
-            "resource" => $resource
-        ),
+        "source" => "https:" . $source,
         "images" => array(
-            "full" => $full,
-            "square" => "https:" . $square,
-            "thumb" => "https:" . $thumb
+            "large" => "https:" . $large,
+            "medium" => "https:" . $medium,
+            "small" => "https:" . $small
         )
     )
 ));

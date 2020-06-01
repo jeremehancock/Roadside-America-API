@@ -97,7 +97,7 @@
         function getImage() {
             $.getJSON("api/index.php", function (data) {
                 $(".json pre").html(JSON.stringify(data, null, 4));
-                $(".image-content").html("<img src='" + data.results.images.full + "'>");
+                $(".image-content").html("<img src='" + data.results.images.large + "'>");
             });
         }
 
