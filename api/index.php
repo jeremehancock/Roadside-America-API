@@ -24,11 +24,11 @@ $source =  $q_array["item"]["resource_links"][0];
 $json = json_encode(array(
     "results" => array(
         "title" => $title,
-        "source" => "https:" . $source,
+        "source" => $source,
         "images" => array(
-            "large" => "https:" . $large,
-            "medium" => "https:" . $medium,
-            "small" => "https:" . $small
+            "large" => $large,
+            "medium" => $medium,
+            "small" => $small
         )
     )
 ));
