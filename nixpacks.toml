@@ -1,0 +1,72 @@
+[providers]
+php = "8.2"
+
+[variables]
+# PHP Configuration
+PHP_VERSION = "8.2"
+DOCUMENT_ROOT = "/"
+
+[phases.setup]
+nixPkgs = [
+  "php82",
+  "php82Extensions.mbstring",
+  "php82Extensions.pdo",
+  "php82Extensions.pdo_mysql",
+  "php82Extensions.pdo_pgsql", 
+  "php82Extensions.mysqli",
+  "php82Extensions.curl",
+  "php82Extensions.gd",
+  "php82Extensions.zip",
+  "php82Extensions.xml",
+  "php82Extensions.dom",
+  "php82Extensions.session",
+  "php82Extensions.tokenizer",
+  "php82Extensions.ctype",
+  "php82Extensions.fileinfo",
+  "php82Extensions.json",
+  "php82Extensions.openssl",
+  "nginx"
+]
+
+[phases.install]
+# Install Composer if composer.json exists
+cmds = [
+  "if [ -f composer.json ]; then curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; fi",
+  "if [ -f composer.json ]; then composer install --no-dev --optimize-autoloader; fi"
+]
+
+[phases.build]
+cmds = [
+  # Create nginx config
+  "mkdir -p /etc/nginx/conf.d",
+  "cat > /etc/nginx/conf.d/default.conf << 'EOF'",
+  "server {",
+  "    listen 8080;",
+  "    server_name _;",
+  "    root /app/public;",
+  "    index index.php index.html;",
+  "",
+  "    location / {",
+  "        try_files $uri $uri/ /index.php?$query_string;",
+  "    }",
+  "",
+  "    location ~ \\.php$ {",
+  "        fastcgi_pass 127.0.0.1:9000;",
+  "        fastcgi_index index.php;",
+  "        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;",
+  "        include fastcgi_params;",
+  "    }",
+  "",
+  "    location ~ /\\.ht {",
+  "        deny all;",
+  "    }",
+  "}",
+  "EOF",
+  # Create public directory if it doesn't exist
+  "mkdir -p public",
+  # Create a simple index.php if none exists
+  "if [ ! -f public/index.php ] && [ ! -f index.php ]; then echo '<?php phpinfo(); ?>' > public/index.php; fi"
+]
+
+[start]
+cmd = "php-fpm -D && nginx -g 'daemon off;'"
