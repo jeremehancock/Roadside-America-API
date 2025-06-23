@@ -24,29 +24,8 @@ cmds = [
 
 [phases.build]
 cmds = [
-  "# Create a simple index.php router",
-  "echo '<?php' > index.php",
-  "echo '\\$uri = parse_url(\\$_SERVER[\"REQUEST_URI\"], PHP_URL_PATH);' >> index.php",
-  "echo 'if (\\$uri === \"/\" || \\$uri === \"/index.html\") {' >> index.php",
-  "echo '  if (file_exists(\"index.html\")) {' >> index.php", 
-  "echo '    header(\"Content-Type: text/html\");' >> index.php",
-  "echo '    readfile(\"index.html\");' >> index.php",
-  "echo '    exit;' >> index.php",
-  "echo '  }' >> index.php",
-  "echo '}' >> index.php",
-  "echo 'if (strpos(\\$uri, \"/api\") === 0) {' >> index.php",
-  "echo '  \\$apiFile = \"./api\" . substr(\\$uri, 4);' >> index.php",
-  "echo '  if (empty(substr(\\$uri, 4))) \\$apiFile = \"./api/index.php\";' >> index.php",
-  "echo '  if (file_exists(\\$apiFile)) {' >> index.php",
-  "echo '    chdir(dirname(\\$apiFile));' >> index.php", 
-  "echo '    include \\$apiFile;' >> index.php",
-  "echo '    exit;' >> index.php",
-  "echo '  }' >> index.php",
-  "echo '}' >> index.php",
-  "echo 'http_response_code(404);' >> index.php",
-  "echo 'echo \"404 Not Found\";' >> index.php",
-  "echo '?>' >> index.php"
+  "echo '<?php echo \"PHP is working! Your API should be available at /api\"; ?>' > test.php"
 ]
 
 [start]
-cmd = "php -S 0.0.0.0:8080 -t /app"
+cmd = "php -S 0.0.0.0:8080 -t /app test.php"
