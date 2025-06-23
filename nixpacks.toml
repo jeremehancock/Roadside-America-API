@@ -2,7 +2,7 @@ providers = ["php"]
 
 [variables]
 PHP_VERSION = "8.2"
-DOCUMENT_ROOT = "/"
+DOCUMENT_ROOT = "/app"
 
 [phases.setup]
 nixPkgs = [
@@ -34,10 +34,8 @@ cmds = [
 
 [phases.build]
 cmds = [
-  "mkdir -p /etc/nginx/conf.d",
-  "mkdir -p public",
-  "if [ ! -f public/index.php ] && [ ! -f index.php ]; then echo '<?php phpinfo(); ?>' > public/index.php; fi"
+  "if [ ! -f index.php ]; then echo '<?php phpinfo(); ?>' > index.php; fi"
 ]
 
 [start]
-cmd = "php -S 0.0.0.0:8080 -t public"
+cmd = "php -S 0.0.0.0:8080 -t /app"
