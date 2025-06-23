@@ -2,7 +2,7 @@ providers = ["php"]
 
 [variables]
 PHP_VERSION = "8.2"
-DOCUMENT_ROOT = "/app"
+PORT = "8080"
 
 [phases.setup]
 nixPkgs = [
@@ -10,20 +10,11 @@ nixPkgs = [
   "php82Extensions.mbstring",
   "php82Extensions.pdo",
   "php82Extensions.pdo_mysql",
-  "php82Extensions.pdo_pgsql", 
-  "php82Extensions.mysqli",
   "php82Extensions.curl",
   "php82Extensions.gd",
   "php82Extensions.zip",
-  "php82Extensions.xml",
   "php82Extensions.dom",
-  "php82Extensions.session",
-  "php82Extensions.tokenizer",
-  "php82Extensions.ctype",
-  "php82Extensions.fileinfo",
-
-  "php82Extensions.openssl",
-  "nginx"
+  "php82Extensions.ctype"
 ]
 
 [phases.install]
@@ -34,8 +25,73 @@ cmds = [
 
 [phases.build]
 cmds = [
-  "if [ ! -f index.php ]; then echo '<?php phpinfo(); ?>' > index.php; fi"
+  "# Create a router script to handle both static files and API requests",
+  "cat > router.php << 'EOF'",
+  "<?php",
+  "// Get the request URI",
+  "$requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);",
+  "",
+  "// Handle API requests",
+  "if (strpos($requestUri, '/api') === 0) {",
+  "    // Remove /api from the path and look in the api directory",
+  "    $apiPath = substr($requestUri, 4); // Remove '/api'",
+  "    if (empty($apiPath) || $apiPath === '/') {",
+  "        $apiPath = '/index.php';",
+  "    }",
+  "    ",
+  "    $filePath = __DIR__ . '/api' . $apiPath;",
+  "    ",
+  "    // If it's a PHP file, include it",
+  "    if (file_exists($filePath) && pathinfo($filePath, PATHINFO_EXTENSION) === 'php') {",
+  "        chdir(dirname($filePath));",
+  "        include $filePath;",
+  "        return true;",
+  "    }",
+  "    // If it's a directory, try index.php",
+  "    elseif (is_dir($filePath) && file_exists($filePath . '/index.php')) {",
+  "        chdir($filePath);",
+  "        include $filePath . '/index.php';",
+  "        return true;",
+  "    }",
+  "}",
+  "",
+  "// For root path, serve index.html",
+  "if ($requestUri === '/') {",
+  "    if (file_exists(__DIR__ . '/index.html')) {",
+  "        header('Content-Type: text/html');",
+  "        readfile(__DIR__ . '/index.html');",
+  "        return true;",
+  "    }",
+  "}",
+  "",
+  "// For other requests, try to serve static files",
+  "$filePath = __DIR__ . $requestUri;",
+  "if (file_exists($filePath) && is_file($filePath)) {",
+  "    // Determine content type",
+  "    $ext = pathinfo($filePath, PATHINFO_EXTENSION);",
+  "    $contentTypes = [",
+  "        'html' => 'text/html',",
+  "        'css' => 'text/css',",
+  "        'js' => 'application/javascript',",
+  "        'json' => 'application/json',",
+  "        'png' => 'image/png',",
+  "        'jpg' => 'image/jpeg',",
+  "        'jpeg' => 'image/jpeg',",
+  "        'gif' => 'image/gif'",
+  "    ];",
+  "    ",
+  "    if (isset($contentTypes[$ext])) {",
+  "        header('Content-Type: ' . $contentTypes[$ext]);",
+  "    }",
+  "    ",
+  "    readfile($filePath);",
+  "    return true;",
+  "}",
+  "",
+  "// Return false to serve the default index.html",
+  "return false;",
+  "EOF"
 ]
 
 [start]
-cmd = "php -S 0.0.0.0:8080 -t /app"
+cmd = "php -S 0.0.0.0:8080 -t /app router.php"
