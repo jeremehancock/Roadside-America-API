@@ -21,7 +21,7 @@ nixPkgs = [
   "php82Extensions.tokenizer",
   "php82Extensions.ctype",
   "php82Extensions.fileinfo",
-  "php82Extensions.json",
+
   "php82Extensions.openssl",
   "nginx"
 ]
