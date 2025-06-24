@@ -1,56 +1,13 @@
 [variables]
 PORT = "8080"
 
-[providers]
-php = "8.2"
-
-[buildCmd]
-cmd = "echo 'No build step required for plain PHP files'"
-
-[startCmd]
-cmd = "apache2-foreground"
+providers = ["php"]
 
 [phases.setup]
-nixPkgs = [
-  "php82", 
-  "php82Extensions.mbstring", 
-  "php82Extensions.curl", 
-  "php82Extensions.xml", 
-  "php82Extensions.zip", 
-  "php82Extensions.gd",
-  "php82Extensions.mysqli",
-  "php82Extensions.pdo",
-  "php82Extensions.pdo_mysql",
-  "apache2",
-  "apache2.modules"
-]
+nixPkgs = ["php", "php.extensions.mbstring", "php.extensions.curl", "php.extensions.xml", "php.extensions.zip", "php.extensions.gd", "php.extensions.mysqli", "php.extensions.pdo"]
 
 [phases.build]
-cmd = '''
-# Create Apache configuration
-mkdir -p /etc/apache2/sites-available
-cat > /etc/apache2/sites-available/000-default.conf << 'EOF'
-<VirtualHost *:8080>
-    DocumentRoot /app
-    DirectoryIndex index.php index.html
-    
-    <Directory /app>
-        AllowOverride All
-        Require all granted
-        Options Indexes FollowSymLinks
-    </Directory>
-    
-    # PHP configuration
-    <FilesMatch \.php$>
-        SetHandler application/x-httpd-php
-    </FilesMatch>
-</VirtualHost>
-EOF
+cmd = "echo 'Build complete - no compilation needed for PHP'"
 
-# Configure Apache to listen on PORT
-echo "Listen 8080" > /etc/apache2/ports.conf
-
-# Enable mod_rewrite and mod_php
-a2enmod rewrite
-a2enmod php8.2
-'''
+[start]
+cmd = "php -S 0.0.0.0:8080 -t ."
