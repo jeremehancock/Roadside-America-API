@@ -1,31 +1,56 @@
-providers = ["php"]
-
 [variables]
-PHP_VERSION = "8.2"
+PORT = "8080"
+
+[providers]
+php = "8.2"
+
+[buildCmd]
+cmd = "echo 'No build step required for plain PHP files'"
+
+[startCmd]
+cmd = "apache2-foreground"
 
 [phases.setup]
 nixPkgs = [
-  "php82",
-  "php82Extensions.mbstring",
+  "php82", 
+  "php82Extensions.mbstring", 
+  "php82Extensions.curl", 
+  "php82Extensions.xml", 
+  "php82Extensions.zip", 
+  "php82Extensions.gd",
+  "php82Extensions.mysqli",
   "php82Extensions.pdo",
   "php82Extensions.pdo_mysql",
-  "php82Extensions.curl",
-  "php82Extensions.gd",
-  "php82Extensions.zip",
-  "php82Extensions.dom",
-  "php82Extensions.ctype"
-]
-
-[phases.install]
-cmds = [
-  "if [ -f composer.json ]; then curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; fi",
-  "if [ -f composer.json ]; then composer install --no-dev --optimize-autoloader; fi"
+  "apache2",
+  "apache2.modules"
 ]
 
 [phases.build]
-cmds = [
-  "echo '<?php echo \"PHP is working! Your API should be available at /api\"; ?>' > test.php"
-]
+cmd = '''
+# Create Apache configuration
+mkdir -p /etc/apache2/sites-available
+cat > /etc/apache2/sites-available/000-default.conf << 'EOF'
+<VirtualHost *:8080>
+    DocumentRoot /app
+    DirectoryIndex index.php index.html
+    
+    <Directory /app>
+        AllowOverride All
+        Require all granted
+        Options Indexes FollowSymLinks
+    </Directory>
+    
+    # PHP configuration
+    <FilesMatch \.php$>
+        SetHandler application/x-httpd-php
+    </FilesMatch>
+</VirtualHost>
+EOF
 
-[start]
-cmd = "php -S 0.0.0.0:8080 -t /app test.php"
+# Configure Apache to listen on PORT
+echo "Listen 8080" > /etc/apache2/ports.conf
+
+# Enable mod_rewrite and mod_php
+a2enmod rewrite
+a2enmod php8.2
+'''
