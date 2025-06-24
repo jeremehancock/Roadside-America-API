@@ -1,13 +1,4 @@
-[variables]
-PORT = "8080"
-
 providers = ["php"]
 
-[phases.setup]
-nixPkgs = ["php", "php.extensions.mbstring", "php.extensions.curl", "php.extensions.xml", "php.extensions.zip", "php.extensions.gd", "php.extensions.mysqli", "php.extensions.pdo"]
-
-[phases.build]
-cmd = "echo 'Build complete - no compilation needed for PHP'"
-
 [start]
-cmd = "php -S 0.0.0.0:8080 -t ."
+cmd = "php -S 0.0.0.0:$PORT -t ."
