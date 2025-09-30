@@ -30,8 +30,6 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="images/favicon/ms-icon-144x144.png">
     <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
@@ -39,7 +37,7 @@
 
 <body>
     <div class="mobile-menu">
-        <a href="index.html"><i class="fa fa-navicon"></i></a>
+        <a href="#"><i class="fa fa-navicon"></i></a>
     </div>
     <div class="vertical-nav">
         <h1>Roadside America API</h1>
@@ -60,10 +58,9 @@
         <p>Take a journey along U.S. main streets, byways, and highways through photographs taken by John Margolies between 1969 and 2008.</p>
         <div class="code-wrapper">
             <pre class="code">https://roadside-america.dumbprojects.com/api</pre>
-            <a href='javascript:void(0);' class='get-image button'>Submit</a>
+            <a href='#' class='get-image button'>Submit</a>
         </div>
         <div class="try">
-
             <div class="image">
                 <div class="image-content"></div>
             </div>
@@ -81,51 +78,48 @@
             <a class="a2a_button_facebook"></a>
             <a class="a2a_button_twitter"></a>
         </div>
-        <script src="//static.addtoany.com/menu/page.js"></script>
+        <script async src="//static.addtoany.com/menu/page.js"></script>
         <!-- AddToAny END -->
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
-        if (typeof jQuery == 'undefined') {
-            document.write(unescape("%3Cscript src='/js/vendor/jquery-3.4.1.min.js' type='text/javascript'%3E%3C/script%3E"));
-        }
-    </script>
-    <script>
+        // Fetch and display image data
         function getImage() {
-            $.getJSON("api/index.php", function (data) {
-                $(".json pre").html(JSON.stringify(data, null, 4));
-                $(".image-content").html("<img src='" + data.results.images.large + "'>");
+            fetch("api/index.php")
+                .then(response => response.json())
+                .then(data => {
+                    document.querySelector(".json pre").textContent = JSON.stringify(data, null, 4);
+                    document.querySelector(".image-content").innerHTML = "<img src='" + data.results.images.large + "' alt='Roadside America Photo'>";
+                })
+                .catch(error => {
+                    console.error('Error fetching image:', error);
+                    document.querySelector(".json pre").textContent = "Error loading data";
+                });
+        }
+
+        // Handle submit button click
+        document.querySelector('.get-image').addEventListener('click', function(e) {
+            e.preventDefault();
+            getImage();
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.vertical-nav').classList.toggle('active');
+        });
+
+        // Close menu when clicking nav links on mobile
+        document.querySelectorAll('.vertical-nav ul a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.vertical-nav').classList.remove('active');
             });
-        }
+        });
 
-        $('.get-image').click(function () {
+        // Load initial image when page loads
+        document.addEventListener('DOMContentLoaded', function() {
             getImage();
         });
-
-        $(document).ready(function () {
-            getImage();
-        });
-
-        function mobileMenu() {
-            var x = document.getElementById("main-content");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-                document.body.style.backgroundColor = "#fff";
-            } else {
-                x.style.display = "none";
-                document.body.style.backgroundColor = "#eee";
-            }
-        }
-
-        $('.mobile-menu').click(function () {
-            mobileMenu();
-        });
-
-
-        $(".mobile-menu").click(function (e) { e.preventDefault(); $(".vertical-nav").toggleClass("active"); }); $(".vertical-nav ul a").click(function (e) { $(".vertical-nav").removeClass("active"); });
-
     </script>
 
     <!-- Default Statcounter code for Roadside America (Site) https://roadside-america.dumbprojects.com/ -->
@@ -138,7 +132,7 @@
     <noscript>
         <div class="statcounter">
             <a title="Web Analytics Made Easy - StatCounter" href="https://statcounter.com/" target="_blank">
-                <img class="statcounter"src="https://c.statcounter.com/12101527/0/93e2582a/1/" alt="Web Analytics Made Easy -StatCounter">
+                <img class="statcounter" src="https://c.statcounter.com/12101527/0/93e2582a/1/" alt="Web Analytics Made Easy - StatCounter">
             </a>
         </div>
     </noscript>
