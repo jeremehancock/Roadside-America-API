@@ -85,15 +85,32 @@
     <script>
         // Fetch and display image data
         function getImage() {
+            // Show loading indicator
+            const imageContent = document.querySelector(".image-content");
+            const jsonPre = document.querySelector(".json pre");
+            
+            imageContent.innerHTML = '<div class="loading-container"><div class="loading-spinner"></div><div class="loading-text">Loading image...</div></div>';
+            jsonPre.textContent = 'Loading data...';
+            
             fetch("api/index.php")
                 .then(response => response.json())
                 .then(data => {
-                    document.querySelector(".json pre").textContent = JSON.stringify(data, null, 4);
-                    document.querySelector(".image-content").innerHTML = "<img src='" + data.results.images.large + "' alt='Roadside America Photo'>";
+                    jsonPre.textContent = JSON.stringify(data, null, 4);
+                    
+                    // Create image element and wait for it to load before displaying
+                    const img = new Image();
+                    img.onload = function() {
+                        imageContent.innerHTML = "<img src='" + data.results.images.large + "' alt='Roadside America Photo'>";
+                    };
+                    img.onerror = function() {
+                        imageContent.innerHTML = '<div class="loading-text">Error loading image</div>';
+                    };
+                    img.src = data.results.images.large;
                 })
                 .catch(error => {
                     console.error('Error fetching image:', error);
-                    document.querySelector(".json pre").textContent = "Error loading data";
+                    jsonPre.textContent = "Error loading data";
+                    imageContent.innerHTML = '<div class="loading-text">Error loading data</div>';
                 });
         }
 
