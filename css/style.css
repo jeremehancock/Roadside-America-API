@@ -274,15 +274,43 @@ p {
   .vertical-nav {
     width: 300px;
     left: -100%;
-    padding-top: 5rem;
+    padding: 4rem 1.5rem 1.5rem;
+    max-height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .vertical-nav h1 {
     display: none;
   }
 
+  .vertical-nav .logo {
+    margin-bottom: 0.5rem;
+  }
+
   .vertical-nav ul {
     margin-top: 0px;
+  }
+
+  .vertical-nav ul h3,
+  .vertical-nav ul h4 {
+    font-size: 0.75rem;
+    margin: 0.75rem 0 0.5rem;
+  }
+
+  .vertical-nav ul li {
+    margin-bottom: 0.25rem;
+  }
+
+  .vertical-nav ul li a {
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .dumb-projects-link {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
   }
 
   .api-side {
