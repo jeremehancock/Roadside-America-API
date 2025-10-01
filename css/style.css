@@ -103,6 +103,7 @@ p {
   font-family: "Karla", sans-serif;
   transition: transform 0.2s;
   border: none !important;
+  margin-top: 0px;
   text-align: center;
   display: block;
 }
