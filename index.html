@@ -61,6 +61,12 @@
             <li>Powered By: <a href="https://www.loc.gov/free-to-use/"><img class="powered-by"
                         src="images/logo-loc-new-branding.svg" alt="Library of Congress" /></a></li>
         </ul>
+
+        <div class="nav-spacer"></div>
+
+        <a href="https://dumbprojects.com" target="_blank" class="dumb-projects-link">
+            More Dumb Projects
+        </a>
     </div>
     <div id="main-content" class="api-side home">
         <h1 class="mobile-h1">Roadside America API</h1>
@@ -83,22 +89,7 @@
 
     </div>
 
-    <div id="social">
-        <a href="https://dumbprojects.com" target="_blank"
-            style="display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 5px; font-weight: bold; font-family: 'Karla', sans-serif; transition: transform 0.2s;">
-            More Dumb Projects
-        </a>
-    </div>
-
     <script>
-        // Add hover effect to the link
-        document.querySelector('#social a').addEventListener('mouseenter', function () {
-            this.style.transform = 'scale(1.05)';
-        });
-        document.querySelector('#social a').addEventListener('mouseleave', function () {
-            this.style.transform = 'scale(1)';
-        });
-
         // Fetch and display image data
         function getImage() {
             // Show loading indicator

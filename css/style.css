@@ -82,22 +82,28 @@ p {
 }
 
 #social {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 100;
+  display: none;
 }
 
-#social a {
-  border: none;
+.dumb-projects-link {
+  display: inline-block;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  font-family: "Karla", sans-serif;
+  transition: transform 0.2s;
+  border: none !important;
+  margin-top: 1.5rem;
+  text-align: center;
+  display: block;
 }
 
-@media (max-width: 1424px) {
-  #social {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
+.dumb-projects-link:hover {
+  transform: scale(1.05);
+  color: white !important;
 }
 
 .vertical-nav {
@@ -112,6 +118,8 @@ p {
   z-index: 1000;
   box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08);
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .vertical-nav.active {
@@ -172,6 +180,10 @@ p {
 .vertical-nav ul li a i {
   width: 24px;
   display: inline-block;
+}
+
+.nav-spacer {
+  flex-grow: 1;
 }
 
 .api-side {
@@ -241,7 +253,7 @@ p {
 
   .mobile-h1 {
     display: block;
-    margin-top: 4rem;
+    margin-top: 0;
     font-size: 2rem;
   }
 
@@ -258,7 +270,7 @@ p {
   .api-side {
     width: 100%;
     margin-left: 0;
-    padding: 2rem 1.5rem;
+    padding: 6rem 1.5rem 2rem;
   }
 
   .title {
