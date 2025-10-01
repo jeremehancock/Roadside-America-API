@@ -134,7 +134,6 @@ p {
 }
 
 .vertical-nav .logo {
-  max-width: 140px;
   margin-bottom: 1rem;
 }
 
@@ -281,10 +280,6 @@ p {
 
   .vertical-nav h1 {
     display: none;
-  }
-
-  .vertical-nav .logo {
-    max-width: 120px;
   }
 
   .api-side {
