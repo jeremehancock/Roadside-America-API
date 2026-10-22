@@ -45,7 +45,6 @@ function fetchWithRetry($url, $max_retries)
 
         $response = curl_exec($ch);
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);
 
         // Success
         if ($http_code == 200 && $response !== false) {
