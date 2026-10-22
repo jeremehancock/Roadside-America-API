@@ -1,0 +1,14 @@
+# Not part of the site. router.php also denies most of these at request time;
+# leaving them out of the image means they are not there at all.
+# docker/ stays in: the build needs docker/php.ini, and router.php denies /docker.
+.git
+.github
+.gitignore
+.dockerignore
+.htaccess
+Dockerfile
+**/get-images.php
+
+# The downloaded collection (about 6 GB) is gitignored and never deployed. Keep a
+# local build from copying it into the image.
+images/collection/*/*.jpg
